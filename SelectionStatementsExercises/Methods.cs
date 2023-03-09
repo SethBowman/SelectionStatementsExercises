@@ -13,21 +13,20 @@ namespace SelectionStatementsExercises
             var response = 0;
             while (response != favNumber)
             {
+                var canParse = false;
                 Console.WriteLine("Guess a number between 1 and 10");
-                response = int.Parse(Console.ReadLine());
+                canParse = int.TryParse(Console.ReadLine(), out response);
+                while(canParse == false)
+                {                    
+                    Console.WriteLine("That was not a correct choice, try again.");
+                    Console.WriteLine("Guess a number between 1 and 10");
+                    canParse = int.TryParse(Console.ReadLine(), out response);
+                    Console.Clear();
+                }
 
-                if (response < favNumber)
-                {
-                    Console.WriteLine($"Too low\nYour Guess: {response}");
-                }
-                else if (response > favNumber)
-                {
-                    Console.WriteLine($"Too high\nYour Guess: {response}");
-                }
-                else
-                {
-                    Console.WriteLine($"You guessed correctly!\nThe number was {response}");
-                }
+                var message = (response < favNumber) ? $"Too low\nYour Guess: {response}" : (response > favNumber) ? $"Too high\nYour Guess: {response}" : $"You guessed correctly!\nThe number was {response}";
+                Console.WriteLine(message);
+
                 Thread.Sleep(3000);
                 Console.Clear();
 
