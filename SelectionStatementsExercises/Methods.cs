@@ -7,7 +7,6 @@ namespace SelectionStatementsExercises
         //Exercise 1
         public static void GuessingGame()
         {
-
             var r = new Random();
             var favNumber = r.Next(1, 10);
             var response = 0;
@@ -16,15 +15,17 @@ namespace SelectionStatementsExercises
                 var canParse = false;
                 Console.WriteLine("Guess a number between 1 and 10");
                 canParse = int.TryParse(Console.ReadLine(), out response);
-                while(canParse == false)
-                {                    
+                while (canParse == false)
+                {
                     Console.WriteLine("That was not a correct choice, try again.");
                     Console.WriteLine("Guess a number between 1 and 10");
                     canParse = int.TryParse(Console.ReadLine(), out response);
                     Console.Clear();
                 }
 
-                var message = (response < favNumber) ? $"Too low\nYour Guess: {response}" : (response > favNumber) ? $"Too high\nYour Guess: {response}" : $"You guessed correctly!\nThe number was {response}";
+                var message = (response < favNumber) ? $"Too low\nYour Guess: {response}" :
+                    (response > favNumber) ? $"Too high\nYour Guess: {response}" :
+                    $"You guessed correctly!\nThe number was {response}";
                 Console.WriteLine(message);
 
                 Thread.Sleep(3000);
